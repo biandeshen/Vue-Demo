@@ -10,6 +10,8 @@ import First from '@/components/First'
 import Second from '@/components/Second'
 /* 2. 嵌套路由 */
 import secondchild from '@/components/SecondChild'
+/* 3. 动态路由 */
+import FirstDynamic from '@/components/FirstDynamic'
 Vue.use(VueRouter)
 // 开启debug模式
 Vue.config.debug = true
@@ -21,7 +23,22 @@ const router = new VueRouter({
     {
       path: '/first',
       name: 'First',
-      component: First
+      component: First,
+      children: [
+      /* 3. 动态路由 */
+        {
+          path: '/first/firstdynamic/:pathname',
+          name: 'FirstDynamic',
+          component: FirstDynamic
+        },
+        /* 3. 动态路由 */
+        {
+          path: '/first/firstdynamic/',
+          name: 'FirstDynamic',
+          component: FirstDynamic
+        }
+
+      ]
     },
     {
       path: '/second',
@@ -37,6 +54,7 @@ const router = new VueRouter({
         }
       ]
     }
+
   ]
 
 })
