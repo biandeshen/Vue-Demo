@@ -7,7 +7,9 @@ import App from '@/App.vue'
 import VueRouter from 'vue-router'
 // 导入其它的components
 import First from '@/components/First'
-import second from '@/components/Second'
+import Second from '@/components/Second'
+/* 2. 嵌套路由 */
+import secondchild from '@/components/SecondChild'
 Vue.use(VueRouter)
 // 开启debug模式
 Vue.config.debug = true
@@ -24,7 +26,16 @@ const router = new VueRouter({
     {
       path: '/second',
       name: 'Second',
-      component: second
+      component: Second,
+      /* 2. 嵌套路由 */
+      children: [
+        {
+          path: 'secondchild',
+          name: 'SecondChild',
+          component: secondchild
+
+        }
+      ]
     }
   ]
 
@@ -38,5 +49,6 @@ new Vue({
   /* components: {
     App
   } */
+  /* vue2.0的写法 */
   render: h => h(App)
 }).$mount('#app')
